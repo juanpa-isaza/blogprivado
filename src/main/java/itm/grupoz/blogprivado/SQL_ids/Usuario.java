@@ -8,8 +8,8 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
-    private Integer idUsuario;
-    private String cedula;
+    private int idUsuario;
+    private int cedula;
     private String nombres;
     private String apellidos;
     private String email;
