@@ -18,6 +18,8 @@ public class BlogRest {
     public String ping() {
         return "pong";
     }
+    @GetMapping("/autor")
+    public EstructuraBlog getAutor() {return new EstructuraBlog();}
 
     @GetMapping("/titulo")
     public EstructuraBlog getTitulo() {return new EstructuraBlog();}
