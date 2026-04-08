@@ -6,7 +6,13 @@ public class EstructuraBlog {
     private String autor;
     private String titulo;
     private String cuerpo;
-    private Date fechaPublicacion;
+    private Date fechaPublicacion = new Date();
+
+    public EstructuraBlog(String autor, String titulo, String cuerpo) {
+        this.autor = autor;
+        this.titulo = titulo;
+        this.cuerpo = cuerpo;
+    }
 
     public void setAutor(String autor) {
         this.autor = autor;
@@ -29,9 +35,6 @@ public class EstructuraBlog {
         return cuerpo;
     }
 
-    public void setFecha(Date fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
-    }
     public Date getFecha() {
         return fechaPublicacion;
     }

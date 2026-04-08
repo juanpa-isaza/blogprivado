@@ -11,16 +11,6 @@ import java.util.logging.Logger;
 public class Conector {
 
     Connection con;
-/* en este caso springboot ya me carga el driver de mysql
-    static {
-        try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println(e);
-        }
-    }
-     */
 
     public Connection obtenerConector() {
         try {

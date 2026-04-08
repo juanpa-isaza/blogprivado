@@ -14,24 +14,49 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/blog")
 public class BlogRest {
 
-    @GetMapping("/ping")
-    public String ping() {
-        return "pong";
+    @GetMapping("/infoblog")
+    public EstructuraBlog getBlog(EstructuraBlog eB, @RequestParam int idBlog) {
+        return new EstructuraBlog(eB.getAutor(), eB.getTitulo(), eB.getCuerpo());
     }
-    @GetMapping("/autor")
-    public EstructuraBlog getAutor() {return new EstructuraBlog();}
 
-    @GetMapping("/titulo")
-    public EstructuraBlog getTitulo() {return new EstructuraBlog();}
-
-    @PostMapping("/publicar")
-    public ResponseEntity<String> publicar(@RequestBody EstructuraBlog estructuraBlog) {
+    @Operation(
+            tags = {"Blog"},
+            summary = "post con RequestBody",
+            description = "permite hacer un post con RequestBody",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "201",
+                            description = "se ejecuta bien el servicio",
+                            content = {
+                                    @Content(
+                                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                            schema = @Schema(implementation = EstructuraBlog.class))
+                            })
+            }
+    )
+    @PostMapping("/crearblog")
+    public ResponseEntity<EstructuraBlog> crearBlog(@RequestBody EstructuraBlog eB, @RequestParam String autor, @RequestParam String titulo, @RequestParam String cuerpo, @RequestParam int idBlog) {
         System.out.println("datos recibidos: \n" +
-                "\n autor: " + estructuraBlog.getAutor() +
-                "\n titulo: " + estructuraBlog.getTitulo() +
-                "\n cuerpo: " + estructuraBlog.getCuerpo() +
-                "\n fecha de publicación: " + estructuraBlog.getFecha());
-        return new ResponseEntity<>("se publica el blog " + estructuraBlog.getTitulo(), HttpStatus.CREATED);
+                "\n autor: " + eB.getAutor() +
+                "\n titulo: " + eB.getTitulo() +
+                "\n cuerpo: " + eB.getCuerpo() +
+                "\n fecha de publicación: " + eB.getFecha());
+        return new ResponseEntity<>(eB, HttpStatus.CREATED);
+    }
+    
+    @PutMapping("/actualizarblog")
+    public ResponseEntity<EstructuraBlog> actualizarBlog(@RequestBody EstructuraBlog eB, @RequestParam String autor, @RequestParam String titulo, @RequestParam String cuerpo, @RequestParam int idBlog) {
+        System.out.println("Blog actualizado: \n" +
+                "\n autor: " + eB.getAutor() +
+                "\n titulo: " + eB.getTitulo() +
+                "\n cuerpo: " + eB.getCuerpo() +
+                "\n fecha de publicación: " + eB.getFecha());
+        return new ResponseEntity<>(eB, HttpStatus.OK);
+    }
+    
+    @DeleteMapping("/borrarblog")
+    public ResponseEntity<String> eliminarBlog(@RequestParam int idBlog) {
+        return new ResponseEntity<>("ID del blog borrado: " + idBlog, HttpStatus.OK);
     }
 
 }
