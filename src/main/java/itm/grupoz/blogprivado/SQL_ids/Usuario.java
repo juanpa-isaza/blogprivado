@@ -1,0 +1,17 @@
+package itm.grupoz.blogprivado.SQL_ids;
+
+import lombok.*;
+import java.util.Date;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Usuario {
+    private Integer idUsuario;
+    private String cedula;
+    private String nombres;
+    private String apellidos;
+    private String email;
+    private Date fechaIngreso;
+}
